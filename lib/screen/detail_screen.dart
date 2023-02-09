@@ -5,18 +5,18 @@ import 'package:flutter_netflix_clone/model/model_movie.dart';
 
 class DetailScreen extends StatefulWidget {
   final Movie movie;
-  const DetailScreen({required this.movie});
+  const DetailScreen({super.key, required this.movie});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  bool like = false;
+  bool likes = false;
   @override
   void initState() {
     super.initState();
-    like = widget.movie.like;
+    likes = widget.movie.likes;
   }
 
   @override
@@ -32,7 +32,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('images/${widget.movie.poster}'),
+                        image: NetworkImage(widget.movie.poster),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -49,8 +49,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 padding:
                                     const EdgeInsets.fromLTRB(0, 45, 0, 10),
                                 height: 300,
-                                child: Image.asset(
-                                    'images/${widget.movie.poster}'),
+                                child: Image.network(widget.movie.poster),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(7),
@@ -138,10 +137,15 @@ class _DetailScreenState extends State<DetailScreen> {
                     Container(
                       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            likes = !likes;
+                            widget.movie.reference!.update({'likes': likes});
+                          });
+                        },
                         child: Column(
                           children: [
-                            like
+                            likes
                                 ? const Icon(Icons.check)
                                 : const Icon(Icons.add),
                             const Padding(

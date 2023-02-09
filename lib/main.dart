@@ -1,11 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_netflix_clone/screen/home_screen.dart';
 import 'package:flutter_netflix_clone/screen/more_screen.dart';
 import 'package:flutter_netflix_clone/widget/bottom_bar.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -33,7 +40,7 @@ class _MyAppState extends State<MyApp> {
             //NeverScrollableScrollPhysics 해당 method는 손가락으로
             //scroll 하는 것을 막아준다.
             children: [
-              HomeScreen(),
+              const HomeScreen(),
               Container(child: const Center(child: Text('search'))),
               Container(child: const Center(child: Text('save'))),
               const MoreScreen(),

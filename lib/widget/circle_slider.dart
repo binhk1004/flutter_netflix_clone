@@ -4,7 +4,7 @@ import 'package:flutter_netflix_clone/screen/detail_screen.dart';
 
 class CirleSlider extends StatelessWidget {
   final List<Movie> movies;
-  const CirleSlider({required this.movies});
+  const CirleSlider({super.key, required this.movies});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ List<Widget> makeCircleImages(BuildContext context, List<Movie> movies) {
           child: Align(
             alignment: Alignment.centerLeft,
             child: CircleAvatar(
-              backgroundImage: AssetImage('images/${movies[i].poster}'),
+              backgroundImage: NetworkImage(movies[i].poster),
               radius: 48,
             ),
           ),
