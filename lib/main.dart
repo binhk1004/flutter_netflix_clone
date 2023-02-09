@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_netflix_clone/screen/home_screen.dart';
 import 'package:flutter_netflix_clone/screen/more_screen.dart';
+import 'package:flutter_netflix_clone/screen/search_screen.dart';
 import 'package:flutter_netflix_clone/widget/bottom_bar.dart';
 
 void main() async {
@@ -41,7 +42,7 @@ class _MyAppState extends State<MyApp> {
             //scroll 하는 것을 막아준다.
             children: [
               const HomeScreen(),
-              Container(child: const Center(child: Text('search'))),
+              const SearchScreen(),
               Container(child: const Center(child: Text('save'))),
               const MoreScreen(),
             ],
