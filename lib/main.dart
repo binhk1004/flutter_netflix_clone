@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_netflix_clone/screen/home_screen.dart';
+import 'package:flutter_netflix_clone/screen/like_screen.dart';
 import 'package:flutter_netflix_clone/screen/more_screen.dart';
 import 'package:flutter_netflix_clone/screen/search_screen.dart';
 import 'package:flutter_netflix_clone/widget/bottom_bar.dart';
@@ -36,15 +37,15 @@ class _MyAppState extends State<MyApp> {
       home: DefaultTabController(
         length: 4,
         child: Scaffold(
-          body: TabBarView(
-            physics: const NeverScrollableScrollPhysics(),
+          body: const TabBarView(
+            physics: NeverScrollableScrollPhysics(),
             //NeverScrollableScrollPhysics 해당 method는 손가락으로
             //scroll 하는 것을 막아준다.
             children: [
-              const HomeScreen(),
-              const SearchScreen(),
-              Container(child: const Center(child: Text('save'))),
-              const MoreScreen(),
+              HomeScreen(),
+              SearchScreen(),
+              LikeScreen(),
+              MoreScreen(),
             ],
           ),
           bottomNavigationBar: Bottom(),
